@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,15 +11,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent {
 
   miFormulario: FormGroup = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(6)]],
-    email: ['', [Validators.required, Validators.email]],
-    pass: ['', [Validators.required, Validators.minLength(6)]]
+    name: ['Test 1', [Validators.required, Validators.minLength(6)]],
+    email: ['test@test.com', [Validators.required, Validators.email]],
+    pass: ['1234567', [Validators.required, Validators.minLength(6)]]
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private router: Router) { }
 
   register(){
-    console.log(this.miFormulario.valid);
     console.log(this.miFormulario.value);
+
+    this.router.navigateByUrl('/dashboard');
   }
 }
