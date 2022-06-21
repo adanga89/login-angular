@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal  from 'sweetalert2';
 import { AuthService } from '../../services/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent{
               private authService: AuthService) { }
 
   login(){
-    console.log(this.miFormulario.value);
+    if(!environment.production) console.log(this.miFormulario.value);
     const {email, pass} = this.miFormulario.value;
 
     this.authService.login(email,pass)
